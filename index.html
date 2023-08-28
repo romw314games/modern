@@ -4,13 +4,14 @@
 			Loading...
 		</div>
 		<script>
-			const data = await fetch("/games.json").then(x=>x.json());
-			let html = "<ul>";
-			for (const game of data.games) {
-				html += `<li><a href="${game.url}">${game.name}</a>`;
-			}
-			html += "</ul>";
-			document.getElementById('gamelist').innerHTML = html;
+			fetch("/games.json").then(x=>x.json()).then(data => {
+				let html = "<ul>";
+				for (const game of data.games) {
+					html += `<li><a href="${game.url}">${game.name}</a>`;
+				}
+				html += "</ul>";
+				document.getElementById('gamelist').innerHTML = html;
+			});
 		</script>
 	</body>
 </html>

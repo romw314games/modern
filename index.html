@@ -1,7 +1,16 @@
 <html>
-  <body>
-    <div id="gamelist">
-      Loading...
-    </div>
-  </body>
+	<body>
+		<div id="gamelist">
+			Loading...
+		</div>
+		<script>
+			const data = await fetch("/games.json").then(x=>x.json());
+			let html = "<ul>";
+			for (const game of data.games) {
+				html += `<li><a href="${game.url}">${game.name}</a>`;
+			}
+			html += "</ul>";
+			document.getElementById('gamelist').innerHTML = html;
+		</script>
+	</body>
 </html>

@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<style>
+			#gamelist > ul > li {
+				margin: 8px;
+				padding: 7px;
+			}
+			#gamelist > ul > li > a {
+				border: 3px solid black;
+				background-color: pink;
+				padding: 7px;
+				text-decoration: none;
+				color: darkgreen;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>romw314games</h1>
+		<div id="gamelist">
+			Loading...
+		</div>
+		<script>
+			fetch("/games.json").then(x=>x.json()).then(data => {
+				let html = "<ul>";
+				for (const game of data.games) {
+					html += `<li><a href="${game.url}">${game.name}</a>`;
+				}
+				html += "</ul>";
+				document.getElementById('gamelist').innerHTML = html;
+			});
+		</script>
+	</body>
+</html>
